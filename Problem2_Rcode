@@ -1,0 +1,31 @@
+#Course Project 2 
+library(ggplot2)
+library(data.table)
+library(plyr)
+
+
+setwd("C:/Users/Manuel/Desktop/Coursera/peer_assignment_data")
+
+NEI <- readRDS("summarySCC_PM25.rds")
+
+SCC <- readRDS("Source_Classification_Code.rds")
+
+#To check to see if files are in my directory:
+ dir()
+
+ #Looking at the data
+ str(NEI)
+  head(NEI)
+  
+  str(SCC)
+  head(SCC)
+  
+#PROBLEM 2:
+#Have total emissions from PM2.5 decreased in the Baltimore City, Maryland (fips == "24510") from 1999 to 2008?
+#Use the base plotting system to make a plot answering this question.
+
+baltimore <- subset(NEI, NEI$fips == '24510') #finding the city of baltimore as a subset of the data
+
+CityTotal <- aggregate(Emissions ~ year, baltimore, sum)
+
+plot(CityTotal$year, CityTotal$Emissions, type = "o" , col = " black" , ylab = "Baltimore Emissions" , xlab = "Year" , main = " Baltimore City Emissions")
