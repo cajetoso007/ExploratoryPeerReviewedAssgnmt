@@ -28,5 +28,5 @@ SCC <- readRDS("Source_Classification_Code.rds")
 city_of_baltimore <- subset(NEI, NEI$fips == '24510')
 CityTotal1 <- aggregate(Emissions ~ year + type, city_of_baltimore, sum)
 
-#Using the default color options given by Rstudio and easiest to put them into a plot
+#Using the default color options given by Rstudio and easiest to put them into a plot.
 ggplot(CityTotal1 , aes(year , Emissions, col = type)) + geom_line () + geom_point() + ggtitle( expression("Baltimore City Emissions")) + ylab("emissions") + xlab("Year") + scale_color_discrete(name = "Legend")
