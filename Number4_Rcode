@@ -1,0 +1,34 @@
+#Course Project 2 
+library(ggplot2)
+library(data.table)
+library(plyr)
+
+
+setwd("C:/Users/Manuel/Desktop/Coursera/peer_assignment_data")
+
+NEI <- readRDS("summarySCC_PM25.rds")
+
+SCC <- readRDS("Source_Classification_Code.rds")
+
+#To check to see if files are in my directory:
+ dir()
+
+ #Looking at the data
+ str(NEI)
+  head(NEI)
+  
+  str(SCC)
+  head(SCC)
+  
+ #Problem 4
+#Across the United States, how have emissions from coal combustion-related sources changed from 1999–2008?
+NEISCC <- merge(NEI, SCC, by="SCC")
+NEISCCdp <- tbl_df(NEISCC)
+Coal <- SCC[grepl("coal", SCC$Short.Name, ignore.case = TRUE),]
+coalRelated <- grepl("coal", SCC$SCC.Level.Four, ignore.case=TRUE)
+coal_subset <- NEI[NEI$SCC  %in% SCCcoal$SCC,]
+coal_Total <- aggregate(Emissions ~ year + type, NEIcoal, sum)
+
+ggplot(totalCoal , aes(year , Emissions, col = type)) + geom_line () + geom_point() + ggtitle( expression("US Coal City Emissions")) + ylab("emissions") + xlab("Year") + scale_color_discrete(name = "Legend")
+
+ 
