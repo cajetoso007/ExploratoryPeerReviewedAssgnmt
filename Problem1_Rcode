@@ -1,0 +1,24 @@
+setwd("C:/Users/Manuel/Desktop/Coursera/peer_assignment_data")
+
+NEI <- readRDS("summarySCC_PM25.rds")
+
+SCC <- readRDS("Source_Classification_Code.rds")
+
+#To check to see if files are in my directory:
+ dir()
+
+ #Looking at the data
+ str(NEI)
+  head(NEI)
+  
+  str(SCC)
+  head(SCC)
+  
+  
+TotalEmission <- aggregate(Emissions ~ year , NEI, sum)
+
+#A plot is done by adding in the 2 variables : Emmisions and Year . Addition of type = "o" connects the dots ("makes a graph)
+plot(TotalEmission$year, TotalEmission$Emissions,type = "o", col = "red", main = "Emissions by Year", ylab =  "Emissions", xlab = "Year")
+
+#Anyone know how to format the data to make a histogram or barplot, please , do let me know. I couldn't figure out how to graph the
+two variables from the file, Thanks
